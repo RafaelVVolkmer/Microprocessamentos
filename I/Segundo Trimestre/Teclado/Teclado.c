@@ -8,7 +8,7 @@
 
 volatile uint8_t tempo;
 volatile uint16_t teclas;
-volatile uint16_t *nota;
+volatile uint32_t *nota;
 
 enum {DO=1, DOs=2, RE=4, REs=8, MI=16, FA=32, FAs=64, SOL=128, SOLs=256, LA=512, LAs=1024, SI=2048};
 
