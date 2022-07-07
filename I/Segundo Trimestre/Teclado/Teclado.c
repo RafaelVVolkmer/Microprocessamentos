@@ -30,11 +30,11 @@ void chaveamento()
 
 int frequenciaNota(int nota)
 {
-	const float constanteNotas = 1.0594631;
-	const float doPrimeiraEscala = 261.626;
+	const unsigned float constanteNotas = 1.0594631;
+	const unsigned float doPrimeiraEscala = 261.626;
 
-	const int frequenciaNucleo = 16000000;
-	int frequenciaNota, arr;
+	const unsigned int frequenciaNucleo = 16000000;
+	unsigned int frequenciaNota, arr;
 
 	frequenciaNota = doPrimeiraEscala*pow(constanteNotas, nota-1);
 
