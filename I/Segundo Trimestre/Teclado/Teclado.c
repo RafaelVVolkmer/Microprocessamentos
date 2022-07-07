@@ -87,6 +87,7 @@ int main(void)
 		);
 
 	// PINO PA7 - SAÍDA DO SOM
+	GPIOA->MODER &=~ GPIO_MODER_MODER7;
 	GPIOA->MODER |= GPIO_MODER_MODER7_0;
 
 	//Definindo frequências para o TIMER10
