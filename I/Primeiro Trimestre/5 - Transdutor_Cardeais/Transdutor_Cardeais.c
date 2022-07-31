@@ -2,24 +2,23 @@
 
 #include "stm32f4xx.h"
 
-uint8_t contador;
-
-const uint8_t = mascara 0b11110000;
-
-//     0   1   2  3   4  5  6  7   9  10 11 12 13 14 15  16
-enum {N=0,NNE,NNO,NO,ENE,NE,E,ESE,OSO,SO,O,ONO,S,SSO,SSE,SE};
-
 //Defines para letras aparecerem nos Displays
 #define n 0b00110111
 #define s 0b01101101
 #define e 0b01111001
 #define o 0b00111111
 
-//Variável que força 0
+#defibe mascara 0b11110000
+
 #define apaga 0b00
 
 //Variável para bifshift de controle do DisplayC2
 #define DisplayC2 7
+
+//     0   1   2  3   4  5  6  7   9  10 11 12 13 14 15  16
+enum {N=0,NNE,NNO,NO,ENE,NE,E,ESE,OSO,SO,O,ONO,S,SSO,SSE,SE};
+
+uint8_t contador;
 
 int main(void)
 {
