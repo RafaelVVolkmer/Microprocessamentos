@@ -8,7 +8,7 @@
 #define e 0b01111001
 #define o 0b00111111
 
-#defibe mascara 0b11110000
+#define mascara 0b11110000
 
 #define apaga 0b00
 
