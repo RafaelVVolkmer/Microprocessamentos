@@ -2,9 +2,9 @@
 
 #include "stm32f4xx.h"
 
-uint8_t contador;
+#define mascara 0b0111
 
-const uint8_t mascara = 0b0111;
+uint8_t contador;
 
 const uint8_t CorDoLed[8]=
 		{
