@@ -2,9 +2,9 @@
 
 #include "stm32f4xx.h"
 
-uint16_t contador;
+#define mascara 0b01111
 
-const uint8_t mascara = 0b00001111;
+uint16_t contador;
 
 const uint16_t DisplayHexa[16]=
  {
