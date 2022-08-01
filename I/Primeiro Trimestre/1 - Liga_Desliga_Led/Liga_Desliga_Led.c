@@ -2,9 +2,9 @@
 
 #include "stm32f4xx.h"
 
-uint16_t contador;
+#define mascara 0b01
 
-const uint8_t = 0b01;
+uint16_t contador;
 
 const uint8_t LigaOuDesliga[2]=
 {
