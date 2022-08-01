@@ -2,9 +2,9 @@
 
 #include "stm32f4xx.h"
 
-uint16_t contador;
+#define mascara 0b11110000000
 
-const uint16_t mascara = 0b11110000000;
+uint16_t contador;
 
 const uint16_t leds[16]=
 {
