@@ -23,16 +23,23 @@ Desenvolva um programa que implemente o seguinte comportamento nos leds:
 
 ### Combinacional
 
+Desenvolva um programa que implemente o seguinte comportamento nos leds.
+
+- Led0 aciona quando Sw0 ou Sw1 estiverem ligadas;
+- Led1 aciona quando Sw0 e Sw1 estiverem desligadas;
+- Led2 aciona quando Sw2 e Sw3 estiverem ligadas;
+- Led3 aciona quando Sw2 ou Sw3 estiver desligada.
+
 ### Grau
 
 > Assuma que as chaves sw3 a sw0 formam uma palavra binária destinada a armazenar a informação GRAU. Considere que sw3 representa o bit mais significativo e que a informação está representada como número inteiro positivo.
 
 Implemente um programa que implemente o seguinte comportamento nos leds:
 
-- Ld0 aciona se GRAU > 3
-- Ld1 aciona se GRAU > 7
-- Ld2 aciona se GRAU > 10
-- Ld3 aciona se GRAU > 12
+- Led0 aciona se GRAU > 3
+- Led1 aciona se GRAU > 7
+- Led2 aciona se GRAU > 10
+- Led3 aciona se GRAU > 12
 
 # ESQUEMÁTICO DO CIRCUITO
 ![Esquemático](https://i.imgur.com/g4n8xHx.png)
