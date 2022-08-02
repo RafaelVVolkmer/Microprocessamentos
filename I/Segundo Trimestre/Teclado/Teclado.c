@@ -6,9 +6,9 @@
 #define FrequenciaARR (160-1)
 #define mascara 0b111111111111
 
-volatile uint8_t tempo;
-volatile uint16_t teclas;
-volatile uint32_t *nota;
+uint8_t tempo;
+uint16_t teclas;
+uint32_t *nota;
 
 enum {DO=1, DOs=2, RE=4, REs=8, MI=16, FA=32, FAs=64, SOL=128, SOLs=256, LA=512, LAs=1024, SI=2048};
 
@@ -43,8 +43,6 @@ int frequenciaNota(int nota)
 
 	return arr;
 }
-
-//
 
 int main(void)
 {
