@@ -43,5 +43,6 @@ Implemente um programa que implemente o seguinte comportamento nos leds:
 
 # ESQUEMÁTICO DO CIRCUITO
 ![Esquemático](https://i.imgur.com/g4n8xHx.png)
+- Os resistores usados foram de 470ohms.
 
 > @Rafael.V.Volkmer | @ImZadoc | 10/05/2022 |
