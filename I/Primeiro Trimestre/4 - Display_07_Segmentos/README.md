@@ -6,6 +6,7 @@
 
 # ESQUEMÁTICO DO CIRCUITO
 ![Esquemático](https://i.imgur.com/aHzx7cY.png)
+- Os resistores usados foram de 470ohms.
 
 Caso o Display for anodo, deve-se conectar o ultimo pino no gnd, como mostrado na imagem; caso for catado, ele irá no +3,3v, como as chaves.
 
