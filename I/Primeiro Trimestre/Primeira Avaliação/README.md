@@ -14,6 +14,13 @@ A partir daí, foram feitos 3 modelos de avaliação, todos com lógica combinac
 
 ### Impar - Par
 
+Desenvolva um programa que implemente o seguinte comportamento nos leds.
+
+- Led0 aciona quando a quantidade de chaves ligadas for par;
+- Led1 aciona quando a quantidade de chaves ligadas for impar;
+- Led2 aciona quando Sw0 e Sw3 estiverem ligadas e Sw1 e Sw2 estiverem desligadas;
+- Led3 aciona quando Sw1 estiver ligada e as demais desligadas.
+
 ### Combinacional
 
 ### Grau
