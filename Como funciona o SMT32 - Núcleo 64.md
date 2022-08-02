@@ -20,10 +20,7 @@ Para esses códigos aplicados aqui, usei o modelo STM32F446RE, também aplicáve
 ![ARM](https://i.imgur.com/W6CxsfE.png)
 
 ### Comunicação Serial - Registrador MODER-A
-PA2
-PA3
-PA13
-PA14
+PA2 -PA3 -PA13 - PA14
 
 # REGISTRADORES
 
