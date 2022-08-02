@@ -14,7 +14,7 @@ A partir daí, foram feitos 3 modelos de avaliação, todos com lógica combinac
 
 ### Impar - Par
 
-Desenvolva um programa que implemente o seguinte comportamento nos leds.
+Desenvolva um programa que implemente o seguinte comportamento nos leds:
 
 - Led0 aciona quando a quantidade de chaves ligadas for par;
 - Led1 aciona quando a quantidade de chaves ligadas for impar;
@@ -24,6 +24,15 @@ Desenvolva um programa que implemente o seguinte comportamento nos leds.
 ### Combinacional
 
 ### Grau
+
+> Assuma que as chaves sw3 a sw0 formam uma palavra binária destinada a armazenar a informação GRAU. Considere que sw3 representa o bit mais significativo e que a informação está representada como número inteiro positivo.
+
+Implemente um programa que implemente o seguinte comportamento nos leds:
+
+- Ld0 aciona se GRAU > 3
+- Ld1 aciona se GRAU > 7
+- Ld2 aciona se GRAU > 10
+- Ld3 aciona se GRAU > 12
 
 # ESQUEMÁTICO DO CIRCUITO
 ![Esquemático](https://i.imgur.com/g4n8xHx.png)
