@@ -26,6 +26,7 @@ uint8_t tempo;
 uint8_t teclas;
 unsigned int i;
 
+
 const unsigned float CruelAngelThesis[224] =
 {
   //Rem, fa, sol, fa, sol, sol, sol ,do ,la# ,la ,sol ,la - la ,do ,re ,sol ,fa ,do ,do ,la ,do ,do , re, -
@@ -42,20 +43,21 @@ const unsigned float CruelAngelThesis[224] =
 
 void indice()
 {
-  tempo = TIM10->SR & TIM_SR_UIF;
-  i = 0;
+	
+  	tempo = TIM10->SR & TIM_SR_UIF;
+  	i = 0;
   
-  if(tempo==0)
-  {
-    i++
-  }
+ 	 if(tempo==0)
+  	{
+    		i++
+  	}
   
 }
 
 //Função para ativar saída com o botão pressionado
 void chaveamento()
 {
-  
+  	
 	teclas = GPIOC->IDR & mascara;
 	tempo = TIM10->SR & TIM_SR_UIF;
 	
@@ -82,11 +84,10 @@ int main(void)
   
   	//Botão - PB0
  	GPIOB->MODER &=~ GPIO_MODER_MODER0;
-  	GPIOB->MODER |= GPIO_MODER_MODER0_1;
   
   	//Botão - PB0 é Pull down
   	GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
-  	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_0;
+  	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_1;
   
 	// PINO PA7 - SAÍDA DO SOM
 	GPIOA->MODER &=~ GPIO_MODER_MODER7;
@@ -97,16 +98,17 @@ int main(void)
 	TIM10->ARR = FrequenciaARR;
 
 	//Habilitando contagem do TIMER10
-	TIM10->CR1 = TIM_CR1_CEN|TIM_CR1_ARPE;
-
+	TIM10->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	
 	while (1)
 	{
      	 	teclas = GPIOB->IDR & mascara;
       		tempo = TIM10->SR & TIM_SR_UIF;
-    
+			
       		chaveamento()
+		
         
-      			if(teclas==0)
+      			if(teclas == 0)
       			{ 
           			GPIOA->ODR &=~ para;
       			} 
@@ -118,5 +120,4 @@ int main(void)
            				TIM10->SR &=~ TIM_SR_UIF;
          			}
       }
-    
 }
