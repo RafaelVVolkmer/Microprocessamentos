@@ -14,7 +14,7 @@ Para esses códigos aplicados aqui, usei o modelo STM32F446RE, também aplicáve
 
 > Para mais informações e modelos, acesse: [STMicroeletronics](https://www.st.com/content/st_com/en.html)
 
-> Esses produtos são importados e podem ser adquiridos com facilidade por sites de compra na internet, com o preço variando de 100 a 300 reais. Eu, particularmente, recomendo a aquisição via Aliexpress, onde encontrará os preços mais em conta
+> Esses produtos são importados e podem ser adquiridos com facilidade por sites de compra na internet, com o preço variando de 100 a 300 reais. Eu, particularmente, recomendo a aquisição via Aliexpress, onde encontrará os preços mais em conta.
 
 # REGISTRADORES
 
