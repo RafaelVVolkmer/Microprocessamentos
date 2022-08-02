@@ -13,6 +13,7 @@ Para esses códigos aplicados aqui, usei o modelo STM32F446RE, também aplicáve
 [Datasheet Núcleo-STM32F411xx](https://www.st.com/resource/en/datasheet/stm32f411re.pdf)
 
 > Para mais informações e modelos, acesse: [STMicroeletronics](https://www.st.com/content/st_com/en.html)
+> Esses produtos são importados e podem ser adquiridos com facilidade por sites de compra na internet, com o preço variando de 100 a 300 reais.
 
 # REGISTRADORES
 
