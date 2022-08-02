@@ -1,4 +1,4 @@
-
+//Rafael V. Volkmer - 4324 / N°21 | Pisca_Led
 #include "stm32f4xx.h"
 
 //Definindo 4hz como frequência do CNT
