@@ -5,6 +5,8 @@ O núcleo-STM34 é um microprocessador, capaz de controlar periféricos através
 
 O microprocessador é o pequeno CI do meio, enquanto todos os outros componentes na placa são, ou periféricos, como os pinos de conexão, ou ligações. O chip sempre guarda o último código processado nele em sua memória, e é capaz de resproduzi-lo sem precisar estar com o programa aberto, apenas liga-lo na energia, através do cabo, por isso, nos códigos, é sempre recomendável zerar os pinos que serão usados em seu programa, para, caso haja uma memória guardada, não interferir no código anterior.
 
+Para esses códigos aplicados aqui, usei o modelo STM32F446RE, mas esses também são aplicáveis ao STM32F411RE, ambos cedidos pela STMicroeletronics. Não garanto que a comunicação funcione com outros modelos, e, caso
+
 
   
 # REGISTRADORES
