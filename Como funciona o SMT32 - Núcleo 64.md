@@ -22,6 +22,8 @@ Para esses códigos aplicados aqui, usei o modelo STM32F446RE, também aplicáve
 ### Comunicação Serial - Registrador MODER-A
 PA2 -PA3 -PA13 - PA14
 
+> Pinos de comunicação serial são usados para fazer a comunicação entre os periféricos e o microcontrolador, por tanto, não devem ser usados, correndo o risco de desconfigurar seu ARM e estraga-lo. Esses pinos são reservados e os valores de seus bits não podem ser mudados, então, mantenha-os quietos no canto deles.
+
 # REGISTRADORES
 
 MODER
