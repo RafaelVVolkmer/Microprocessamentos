@@ -7,16 +7,16 @@
 #define para 0b10000000
 
 #define do 261,63
-#define do# 279
+#define DOs 279
 #define re 293,66
-#define re# 311,13
+#define REs 311,13
 #define mi 329,63
 #define fa 349,23
-#define fa# 369,99
+#define FAs 369,99
 #define sol 392
-#define sol# 415,30
+#define sols 415,30
 #define la 440
-#define la# 466,16
+#define LAs 466,16
 #define si 493,88
 
 #define DO
