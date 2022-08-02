@@ -3,6 +3,7 @@
 
 # ESQUEMÁTICO DO CIRCUITO
 ![Esquemático](https://i.imgur.com/yZbKZew.png)
+- Os resistores usados foram de 470ohms.
 
 > @Rafael.V.Volkmer | @ImZadoc | 10/05/2022 |
 
