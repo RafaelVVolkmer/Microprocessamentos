@@ -3,19 +3,16 @@
 
 # REGISTRADORES
 
-> Configuração Básica
-> 
-![REGISTRADORES](https://i.imgur.com/H3WdcPj.png)
-### IDR (INPUT DATA READ)
-### ODR (OUTPUT DATA READ)
+MODER
 
-> Pull up e Pull down
+ODR
 
-![REGISTRADORES 2](https://i.imgur.com/JDlmNwp.png)
+IDR
 
-> Saída
+PUPDR
 
-![REGISTRADORES 3](https://i.imgur.com/UtHuepU.png)
+TIM
+
 
 # PINAGEM
 ![ARM](https://i.imgur.com/W6CxsfE.png)
