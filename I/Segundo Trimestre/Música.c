@@ -76,17 +76,17 @@ void chaveamento()
 int main(void)
 {
 
-	//Ativando clock GPIOA e TIMER10
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
-	RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
+ 	//Ativando clock GPIOA e TIMER10
+  	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
+  	RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
   
-  //Botão - PB0
-	GPIOB->MODER &=~ GPIO_MODER_MODER0;
-	GPIOB->MODER |= GPIO_MODER_MODER0_1;
+  	//Botão - PB0
+ 	GPIOB->MODER &=~ GPIO_MODER_MODER0;
+  	GPIOB->MODER |= GPIO_MODER_MODER0_1;
   
-  //Botão - PB0 é Pull down
-  GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
-  GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_0;
+  	//Botão - PB0 é Pull down
+  	GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
+  	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_0;
   
 	// PINO PA7 - SAÍDA DO SOM
 	GPIOA->MODER &=~ GPIO_MODER_MODER7;
@@ -101,24 +101,22 @@ int main(void)
 
 	while (1)
 	{
-      teclas = GPIOB->IDR & mascara;
-      tempo = TIM10->SR & TIM_SR_UIF;
+     	 	teclas = GPIOB->IDR & mascara;
+      		tempo = TIM10->SR & TIM_SR_UIF;
     
-      chaveamento()
+      		chaveamento()
         
-      if(teclas==0)
-      { 
-          GPIOA->ODR &=~ para;
-      } 
-        else
-        {
-              
-            indice()
+      			if(teclas==0)
+      			{ 
+          			GPIOA->ODR &=~ para;
+      			} 
+       				else
+        			{   
+            				indice()
             
-            TIM10->ARR = CruelAngelThesis[i];
-            TIM10->SR &=~ TIM_SR_UIF;
-       
-         }
+            				TIM10->ARR = CruelAngelThesis[i];
+           				TIM10->SR &=~ TIM_SR_UIF;
+         			}
       }
     
 }
