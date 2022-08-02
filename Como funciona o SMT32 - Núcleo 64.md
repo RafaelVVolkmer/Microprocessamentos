@@ -1,5 +1,5 @@
 # ARM (SMT34 - NÚCLEO 64) | MICROPROCESSADOR
-![AR](https://imgur.com/NBxXZX5)
+![ARM](https://i.imgur.com/IiONPyd.jpeg)
 
 # REGISTRADORES
 
