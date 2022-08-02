@@ -7,8 +7,8 @@ O microprocessador é o pequeno CI do meio, enquanto todos os outros componentes
 
 Para esses códigos aplicados aqui, usei o modelo STM32F446RE, mas esses também são aplicáveis ao STM32F411RE, ambos cedidos pela STMicroeletronics. Não garanto que a comunicação funcione com outros modelos, e, caso
 
+https://www.st.com/resource/en/datasheet/stm32f446re.pdf
 
-  
 # REGISTRADORES
 
 MODER
