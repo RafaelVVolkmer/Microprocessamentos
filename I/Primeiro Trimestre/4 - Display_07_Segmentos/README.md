@@ -5,13 +5,8 @@
 - O valor deve ser expresso na notação hexadecimal.
 
 # ESQUEMÁTICO DO CIRCUITO
-![Esquemático](https://i.imgur.com/xaW56bj.png)
+![Esquemático](https://i.imgur.com/aHzx7cY.png)
 > Caso o Display for anodo, deve-se conectar o ultimo pino no gnd, como mostrado na imagem; caso for catado, ele irá no +3,3v, como as chaves.
 
 > O código já mostra o que alterar para mudar a programação de catodo para anodo, então é bem intuitivo.
 
-# ESQUEMÁTICO DO ARM (SMT34 - NÚCLEO 64)
-![ARM](https://i.imgur.com/W6CxsfE.png)
-
-# PROGRAMAÇÃO
-> Toda a programação foi feita usando a biblioteca stm32f4xx.h
