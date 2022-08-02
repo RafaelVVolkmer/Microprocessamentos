@@ -26,15 +26,15 @@ PA2 - PA3 - PA13 - PA14
 
 # REGISTRADORES
 
-MODER
+### MODER
 
-ODR
+### ODR
 
-IDR
+### IDR
 
-PUPDR
+### PUPDR
 
-TIM
+### TIM
 
 
 
