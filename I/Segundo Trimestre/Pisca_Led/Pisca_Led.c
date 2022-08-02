@@ -8,7 +8,7 @@
 
 uint8_t tempo;
 
-const int EstadoDoLed[2]=
+const uint8_t EstadoDoLed[2]=
 {
 		0b00000000, //Desligado
 		0b01000000  //Ligado
