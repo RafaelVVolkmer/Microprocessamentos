@@ -4,6 +4,7 @@
 
 #define FrequenciaPSC (1000-1)
 #define FrequenciaARR (160-1)
+
 #define mascara 0b111111111111
 
 uint8_t tempo;
