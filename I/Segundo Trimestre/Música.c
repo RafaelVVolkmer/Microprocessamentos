@@ -10,18 +10,18 @@
 #define mascara 0b01
 #define para 0b10000000
 
-#define Do 261,63
+#define Do 261
 #define DOs 279
-#define Re 293,66
-#define REs 311,13
-#define Mi 329,63
-#define Fa 349,23
-#define FAs 369,99
+#define Re 293
+#define REs 311
+#define Mi 329
+#define Fa 349
+#define FAs 369
 #define Sol 392
-#define Sols 415,30
+#define Sols 415
 #define La 440
-#define LAs 466,16
-#define Si 493,88
+#define LAs 466
+#define Si 493
 
 #define DO
 #define RE
@@ -31,7 +31,7 @@ uint8_t teclas;
 unsigned int i;
 
 
-const float CruelAngelThesis[224] =
+const unsigned int CruelAngelThesis[224] =
 {
     	RE, Fa, Sol, Fa, Sol, Sol, Sol, Do, LAs, La, Sol, La, 0, La, Do, Re, Sol, Fa, Do, Do, La, Do, Do, Re, 0,
 	Fa, DO, DO, Fa, Fa, Sol, DO, DO, 0, DO, La, LAS, La, Sol, Fa, Sol, La, LAS, La, RE, 0,
