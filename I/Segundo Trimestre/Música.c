@@ -126,10 +126,13 @@ int main(void)
         			{   
             				indice()
 						
-					TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+						while (i < 245)
+						{
+							TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
             
-            				TIM10->ARR = CruelAngelThesis[i];
-           				TIM10->SR &=~ TIM_SR_UIF;
+            						TIM10->ARR = CruelAngelThesis[i];
+           						TIM10->SR &=~ TIM_SR_UIF;
+						}
          			}
       }
 }
