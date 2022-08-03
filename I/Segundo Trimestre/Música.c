@@ -3,6 +3,10 @@
 
 #define FrequenciaPSC (1000-1)
 #define FrequenciaARR (160-1)
+
+#define FrequenciaPSC_2 (1000-1)
+#define FrequenciaARR_2 (160-1)
+
 #define mascara 0b01
 #define para 0b10000000
 
@@ -44,12 +48,14 @@ const float CruelAngelThesis[224] =
 void indice()
 {
 	
-  	tempo = TIM10->SR & TIM_SR_UIF;
+  	tempo = TIM11->SR & TIM_SR_UIF;
   	i = 0;
   
- 	 if(tempo==0)
+ 	 if(tempo==1)
   	{
     		i++;
+		TIM11->SR &=~ TIM_SR_UIF;
+		
   	}
   
 }
@@ -80,7 +86,7 @@ int main(void)
 
  	//Ativando clock GPIOA e TIMER10
   	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
-  	RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
+  	RCC->APB2ENR |= RCC_APB2ENR_TIM10EN | RCC_APB2ENR_TIM11EN;
   
   	//Botão - PB0
  	GPIOB->MODER &=~ GPIO_MODER_MODER0;
@@ -93,12 +99,16 @@ int main(void)
 	GPIOA->MODER &=~ GPIO_MODER_MODER7;
 	GPIOA->MODER |= GPIO_MODER_MODER7_0;
 
-	//Definindo frequências para o TIMER10
+	//Definindo frequências para os timers
 	TIM10->PSC = FrequenciaPSC;
 	TIM10->ARR = FrequenciaARR;
-
-	//Habilitando contagem do TIMER10
+	
+	TIM11->PSC = FrequenciaPSC_2
+	TIM11->PSC = FrequenciaARR
+		
+	//Habilitando contagem para os timer
 	TIM10->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	
 	
 	while (1)
 	{
@@ -115,6 +125,8 @@ int main(void)
        				else
         			{   
             				indice()
+						
+					TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
             
             				TIM10->ARR = CruelAngelThesis[i];
            				TIM10->SR &=~ TIM_SR_UIF;
