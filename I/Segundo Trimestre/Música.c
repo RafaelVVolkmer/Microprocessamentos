@@ -6,18 +6,18 @@
 #define mascara 0b01
 #define para 0b10000000
 
-#define do 261,63
+#define Do 261,63
 #define DOs 279
-#define re 293,66
+#define Re 293,66
 #define REs 311,13
-#define mi 329,63
-#define fa 349,23
+#define Mi 329,63
+#define Fa 349,23
 #define FAs 369,99
-#define sol 392
-#define sols 415,30
-#define la 440
+#define Sol 392
+#define Sols 415,30
+#define La 440
 #define LAs 466,16
-#define si 493,88
+#define Si 493,88
 
 #define DO
 #define RE
@@ -27,18 +27,18 @@ uint8_t teclas;
 unsigned int i;
 
 
-const unsigned float CruelAngelThesis[224] =
+const float CruelAngelThesis[224] =
 {
-  //Rem, fa, sol, fa, sol, sol, sol ,do ,la# ,la ,sol ,la - la ,do ,re ,sol ,fa ,do ,do ,la ,do ,do , re, -
-  //fa ,dom ,dom ,fa ,fa ,sol ,dom ,dom - dom ,la ,la# ,la ,sol ,fa ,sol ,la ,la# ,la ,rem, -
-  //mi ,mi ,fa ,fa ,mi ,mi ,fa ,sol ,la# ,la ,sol ,fa ,la ,la ,sol ,fa ,sol ,rem ,rem, mi, mi, -
-  //fa ,dom ,dom ,fa ,fa ,sol ,dom ,dom - dom ,la ,la# ,la ,sol ,fa ,sol ,la ,la# ,la ,rem, -
-  //mi ,mi ,fa ,fa ,mi ,mi ,fa ,sol ,la# ,la ,sol ,fa ,la ,la ,sol ,fa ,sol ,la, la#, la, -
-  //fa, fa, mi, fa, fa, mi, sol, sol, fa, mi, re, mi, fa, fa, mi, sol, mi, rem, dom, -
-  //fa, fa, mi, fa, fa, mi, sol, sol, fa, mi, fa, sol, la, la#, la, sol, fa, sol, la, -
-  //Rem, fa, sol, fa, sol, sol, sol ,do ,la# ,la ,sol ,la - la ,do ,re ,sol ,fa, mi, mi, re, mi, mi, mi, fa, -
-  //Rem, fa, sol, fa, sol, sol, sol ,do ,la# ,la ,sol ,la - la ,do ,re ,sol ,fa ,do ,do ,la ,do ,do ,re, -
-  //Rem, fa, sol, fa, sol, sol, sol ,do ,la# ,la ,sol ,la - la ,do ,re ,sol ,fa ,do ,do ,la ,do ,do ,re, -
+    	RE, Fa, Sol, Fa, Sol, Sol, Sol, Do, LAs, La, Sol, La, 0, La, Do, Re, Sol, Fa, Do, Do, La, Do, Do, Re, 0,
+	Fa, DO, DO, Fa, Fa, Sol, DO, DO, 0, DO, La, LAS, La, Sol, Fa, Sol, La, LAS, La, RE, 0,
+	Mi, Mi, Fa, Fa, Mi, Mi, Fa, Sol, LAs, La, Sol, Fa, La, La, Sol, Fa, Sol, RE, RE, Mi, Mi, 0,
+	Fa, DO, DO, Fa, Fa, Sol, DO, DO, 0, DO, La, LAs, La, Sol, Fa, Sol, La, LAs, La, RE, 0,
+	Mi, Mi, Fa, Fa, Mi, Mi, Fa, Sol, La, Las, La, Sol, Fa, La, La, Sol, Fa, Sol, La, LAs, La, 0,
+	Fa, Fa, Mi, Fa, Fa, Mi, Sol, Sol, Fa, Mi, Re, Mi, Fa, Fa, Mi, Sol, Mi, RE, DO, 0,
+	Fa, Fa, Mi, Fa, Fa, Mi, Sol, Sol, Fa, Mi, Fa, Sol, La, LAs, La, Sol, Fa, Sol, La, 0,
+	RE, Fa, Sol, Fa, Sol, Sol, Sol, Do, LAs, La, Sol, La, 0, La, Do, Re, Sol, Fa, Do, Do, La, Do, Do, Re, 0,
+	RE, Fa, Sol, Fa, Sol, Sol, Sol, Do, LAs, La, Sol, La, 0, La, Do, Re, Sol, Fa, Do, Do, La, Do, Do, Re
+	RE, Fa, Sol, Fa, Sol, Sol, Sol, Do, LAs, La, Sol, La, 0, La, Do, Re, Sol, Fa, Mi, Mi, Re, Mi, Mi, Mi, Fa  
 };
 
 void indice()
@@ -49,7 +49,7 @@ void indice()
   
  	 if(tempo==0)
   	{
-    		i++
+    		i++;
   	}
   
 }
