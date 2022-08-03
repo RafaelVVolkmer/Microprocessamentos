@@ -1,8 +1,8 @@
 //Rafael V. Volkmer - 4324 / N°21 | Teclado Musical
 #include "stm32f4xx.h"
 
-#define FrequenciaPSC (1000-1)
-#define FrequenciaARR (160-1)
+#define FrequenciaPSC (1-1)
+#define FrequenciaARR (1-1)
 
 #define FrequenciaPSC_2 (1000-1)
 #define FrequenciaARR_2 (160-1)
