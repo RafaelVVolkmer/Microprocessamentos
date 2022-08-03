@@ -11,7 +11,7 @@
 #define para 0b10000000
 
 #define Do 261
-#define DOs 279
+#define DOs 279.
 #define Re 293
 #define REs 311
 #define Mi 329
