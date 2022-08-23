@@ -25,7 +25,7 @@ uint8_t ponto = 0b10000000;
 
 const uint32_t vet[17]=
 {
-	0b00000000, //null
+		0b00000000, //null
         0b00111111, // 0
         0b00000110, // 1
         0b01011011, // 2
@@ -60,6 +60,27 @@ void Contador ()
 		              if(i>16)
 		              {
 		            	  i = 1;
+		              }
+
+		          }
+}
+
+void ContadorDecrescente ()
+{
+
+	GPIOC->ODR &=~ 0b1111111;
+	GPIOC->ODR |= vet[i];
+
+	PrimeiroTempo = TIM11->SR & TIM_SR_UIF;
+
+		          if(PrimeiroTempo)
+		          {
+		              i--;
+		              TIM11->SR &=~ TIM_SR_UIF;
+
+		              if(i<1)
+		              {
+		            	 i=15;
 		              }
 
 		          }
@@ -129,7 +150,7 @@ int main(void)
 
 	//configurações TIMER11
 	TIM11->PSC = FrequenciaPSC;
-
+	TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 		TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 
 	//configurações TIMER10
@@ -141,8 +162,6 @@ int main(void)
 while (1)
 {
 
-	Contador ();
-
 	PiscaPonto ();
 
 	          teclas = GPIOA->IDR & mascara;
@@ -150,20 +169,27 @@ while (1)
 
 	          switch(teclas)
 	          {
-				  
 	          	  case 0:
+	          		Contador ();
 	          		  TIM11->ARR = FrequenciaARR0;
+	          		  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 	          		  	  break;
 	          	  case 1:
-	          		  TIM11->ARR = FrequenciaARR1;
+	          		Contador ();
+	          		TIM11->CR1 &=~ TIM_CR1_CEN | TIM_CR1_ARPE;
 	          		  	  break;
 	          	  case 2:
-	          		  TIM11->ARR = FrequenciaARR2;
+	          		  	  ContadorDecrescente ();
+	          		  	 TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 	          		  	  break;
-	         	 case 3:
-	              		  TIM11->ARR = FrequenciaARR3;
-	              	  		  break;
-				  
+
+	          		  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	          		  	  break;
+	          case 3:
+	        		Contador ();
+	              	  TIM11->ARR = FrequenciaARR3;
+	              	  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	              	  	  break;
 	          }
 
 	      }
