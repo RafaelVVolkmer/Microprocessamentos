@@ -150,6 +150,7 @@ while (1)
 
 	          switch(teclas)
 	          {
+				  
 	          	  case 0:
 	          		  TIM11->ARR = FrequenciaARR0;
 	          		  	  break;
@@ -159,9 +160,10 @@ while (1)
 	          	  case 2:
 	          		  TIM11->ARR = FrequenciaARR2;
 	          		  	  break;
-	          case 3:
-	              	  TIM11->ARR = FrequenciaARR3;
-	              	  	  break;
+	         	 case 3:
+	              		  TIM11->ARR = FrequenciaARR3;
+	              	  		  break;
+				  
 	          }
 
 	      }
