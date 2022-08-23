@@ -3,17 +3,13 @@
 
 //PSC
 #define FrequenciaPSC (16000-1)
-///ARR (1hz)
-#define FrequenciaARR0 (1000-1)
-//ARR (2hz)
-#define FrequenciaARR1 (500-1)
-//ARR (3hz)
-#define FrequenciaARR2 (333-1)
-//ARR (4hz)
-#define FrequenciaARR3 (250-1)
+///ARR (220ms)
+#define Frequencia220 (1000-1)
+
 
 //ARR PONTO
-#define FrequenciaARR_PONTO (1000-1)
+#define FrequenciaARR_PONTO (333-1)
+#define FrequenciaARR_PONTO_SW1 (142-1)
 
 #define mascara 0b1100000
 
@@ -23,25 +19,15 @@ uint8_t i;
 uint16_t teclas;
 uint8_t ponto = 0b10000000;
 
-const uint32_t vet[17]=
+const uint8_t vet[8]=
 {
 		0b00000000, //null
-        0b00111111, // 0
-        0b00000110, // 1
-        0b01011011, // 2
-        0b01001111, // 3
-        0b01100110, // 4
-        0b01101101, // 5
-        0b01111101, // 6
-        0b00000111, // 7
-        0b01111111, // 8
-        0b01101111, // 9
-        0b01110111, // A
-        0b01111100, // B
-        0b00111001, // C
-        0b01011110, // D
-        0b01111001, // E
-        0b01110001 // F
+        0b00000001, // 0
+        0b00000011, // 1
+        0b00000111, // 2
+        0b00001111, // 3
+        0b00011111, // 4
+        0b00111111, // 5
 };
 
 void Contador ()
@@ -57,30 +43,9 @@ void Contador ()
 		              i++;
 		              TIM11->SR &=~ TIM_SR_UIF;
 
-		              if(i>16)
+		              if(i>7)
 		              {
 		            	  i = 1;
-		              }
-
-		          }
-}
-
-void ContadorDecrescente ()
-{
-
-	GPIOC->ODR &=~ 0b1111111;
-	GPIOC->ODR |= vet[i];
-
-	PrimeiroTempo = TIM11->SR & TIM_SR_UIF;
-
-		          if(PrimeiroTempo)
-		          {
-		              i--;
-		              TIM11->SR &=~ TIM_SR_UIF;
-
-		              if(i<1)
-		              {
-		            	 i=15;
 		              }
 
 		          }
@@ -150,19 +115,19 @@ int main(void)
 
 	//configurações TIMER11
 	TIM11->PSC = FrequenciaPSC;
+	TIM11->ARR = Frequencia220;
+
 	TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
-		TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 
 	//configurações TIMER10
 	TIM10->PSC = FrequenciaPSC;
-	TIM10->ARR = FrequenciaARR_PONTO;
 
 		TIM10->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 
 while (1)
 {
 
-	PiscaPonto ();
+
 
 	          teclas = GPIOA->IDR & mascara;
 	          	  teclas = teclas >> 5;
@@ -170,26 +135,26 @@ while (1)
 	          switch(teclas)
 	          {
 	          	  case 0:
-	          		Contador ();
-	          		  TIM11->ARR = FrequenciaARR0;
-	          		  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
-	          		  	  break;
+	        		Contador ();
+	        		GPIOC->ODR &=~ ponto;
+	        			break;
+
 	          	  case 1:
 	          		Contador ();
-	          		TIM11->CR1 &=~ TIM_CR1_CEN | TIM_CR1_ARPE;
-	          		  	  break;
-	          	  case 2:
-	          		  	  ContadorDecrescente ();
-	          		  	 TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	          		PiscaPonto ();
+	          		TIM10->ARR = FrequenciaARR_PONTO;
 	          		  	  break;
 
-	          		  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
-	          		  	  break;
-	          case 3:
-	        		Contador ();
-	              	  TIM11->ARR = FrequenciaARR3;
-	              	  TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
-	              	  	  break;
+	          	  case 2:
+	          		Contador ();
+	          		GPIOC->ODR &=~ ponto;
+	          			break;
+
+	          	  case 3:
+	          		  Contador ();
+	          		  PiscaPonto ();
+	          		  TIM10->ARR = FrequenciaARR_PONTO_SW1;
+	              	  	  	  break;
 	          }
 
 	      }
