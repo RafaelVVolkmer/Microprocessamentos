@@ -1,8 +1,8 @@
 /*
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-									                   BIBLIOTECA "TecladoMatricial.h"
+				    BIBLIOTECA "TecladoMatricial.h"
 ------------------------------------------------------------------------------------------------------------
-							              Feito por: Rafael V. Volkmer - ft. Pedro Trento
+			    Feito por: Rafael V. Volkmer - ft. Pedro Trento
 ____________________________________________________________________________________________________________
 
 	Essa biblioteca foi feita para a realização do trabalho de demultiplexação dado a mim e minha dupla,
@@ -13,18 +13,18 @@ assim como suas conexões com os pinos do arm devem ser corretas. As entradas de
 saídas em OPEN - DRAIN. Segue a configuração abaixo:
 
 ------------------------------------------------------------------------------------------------------------
-											                        TECLADO MATRICIAL
+					    TECLADO MATRICIAL
 ------------------------------------------------------------------------------------------------------------
 
-                                            C0    C1    C2    C3
-          	  	  	  	  	  	  	  	   [PB4] [PB5] [PB6] [PB7]
-						                    L0  [PB0] |  1  |  2  |  3  |  A  |
-						                    L1  [PB1] |  4  |  5  |  6  |  B  |
-						                    L2  [PB2] |  7  |  8  |  9  |  C  |
-						                    L3  [PB3] |  *  |  0  |  #  |  D  |
+                                           C0    C1    C2    C3
+          	  	  	  	  [PB4] [PB5] [PB6] [PB7]
+			       L0  [PB0] |  1  |  2  |  3  |  A  |
+			       L1  [PB1] |  4  |  5  |  6  |  B  |
+			       L2  [PB2] |  7  |  8  |  9  |  C  |
+			       L3  [PB3] |  *  |  0  |  #  |  D  |
 
 ------------------------------------------------------------------------------------------------------------
-			 *Seguir o esquema acima é de suma importância para o bom funcionamento do código*
+	  *Seguir o esquema acima é de suma importância para o bom funcionamento do código*
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
  */
 
