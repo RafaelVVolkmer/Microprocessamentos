@@ -89,22 +89,22 @@ void IdentificaTeclas ()
 
 	   		   		   	  switch(Leitura[ColunaMatriz])
 	   		   		   	  {
-                                             // C0  C1  C2  C3
+                                                                         // C0  C1  C2  C3
 	   		   		   	  	  case 0b1110 : // [1] [2] [3] [A] - L0
 	   		   		   	  		  	  Tecla = Teclado_Matricial [0] [ColunaMatriz];
 	   		   		   	  		  	  	  break;
 
-	   		   		   	  		  	  	  	 // C0  C1  C2  C3
+	   		   		   	  		  	 // C0  C1  C2  C3
 	   		   		   	  	  case 0b1101 : // [4] [5] [6] [B] - L1
 	   		   		   	  		  	  Tecla = Teclado_Matricial [1] [ColunaMatriz];
 	   		   		   	  		  	  	  break;
 
-	   		   		   	  		             // C0  C1  C2  C3
+	   		   		   	  		         // C0  C1  C2  C3
 	   		   		   	  	  case 0b1011 : // [7] [8] [9] [C] - L2
 	   		   		   	  		  	  Tecla = Teclado_Matricial [2] [ColunaMatriz];
 	   		   		   	  		  	  	  break;
 
-	   		   		   	  		             // C0  C1  C2  C3
+	   		   		   	  		         // C0  C1  C2  C3
 	   		   		   	  	  case 0b0111 : // [*] [0] [#] [D] - L3
 	   		   		   	  		  	 Tecla = Teclado_Matricial [3] [ColunaMatriz];
 	   		   		   	  		  	 	 break;
