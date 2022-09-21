@@ -84,7 +84,7 @@ void IdentificaTeclas ()
 
 	   		   coluna = 0;
 
-	   		   	   for(ColunaMatriz=0 ; ColunaMatriz < Numero_Colunas ; ColunaMatriz++)
+	   		   	   for(ColunaMatriz = 0 ; ColunaMatriz < Numero_Colunas ; ColunaMatriz++)
 	   		   	   {
 
 	   		   		   	  switch(Leitura[ColunaMatriz])
