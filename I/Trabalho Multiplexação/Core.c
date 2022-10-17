@@ -6,20 +6,60 @@
 
 #define Nenhum ' '
 
-#define Frequencia_ARR (1000-1)
+#define Tecla_Apagar 'P'
+
+#define Frequencia_ARR (500-1)
 #define Frequencia_PSC (16000-1)
 
-typedef enum {Entra_Senha = 0, Senha_Certa, Senha_Errada} opera_t;
+typedef enum {Entra_Senha = 0, Senha_Certa, Senha_Errada, Fecha_Armario} opera_t;
 
 opera_t Operacao = Entra_Senha;
 
 char Senha_Digitada[6];
 
+uint8_t i = 0;
+
+uint16_t e = 0;
+
+uint8_t Borda = 0;
+
 uint16_t Armario_Escolhido = 0;
 
 char Tecla = Nenhuma_Tecla;
 
-//Função que compara as senhas
+uint16_t Leds [9] =
+{
+		0b0,
+		0b0,
+		0b0,
+		0b0,
+		0b0,
+		0b0,
+		0b0,
+		0b0,
+		0b0
+};
+
+void MatrizLeds ()
+{
+
+	if(TIM11->SR & TIM_SR_UIF)
+	{
+
+		GPIOC->ODR = Leds [e];
+
+		TIM11->SR &=~ TIM_SR_UIF;
+
+		e++;
+
+		if(e > 9)
+		{
+			e = 0;
+		}
+
+	}
+}
+
 uint16_t Comparador ()
 {
 
@@ -36,7 +76,7 @@ uint16_t Comparador ()
 			{'9', '9', '9', '9', '9', '9'}
 	};
 
-	uint8_t Coluna = 0, Posicao = 0, Comparacao = 0;
+	uint8_t Coluna= 0, Posicao = 0, Comparacao = 0;
 	uint16_t Linha = 0;
 
 	while(Comparacao != 6 && Linha < 9)
@@ -73,20 +113,39 @@ uint16_t Comparador ()
 	return Linha;
 }
 
-//Função que recebe a senha
+void RetornaIncio ()
+{
+
+	if(TIM10->SR & TIM_SR_UIF)
+	{
+		TIM10->SR &=~ TIM_SR_UIF;
+
+	}
+	TIM10->CNT = 0;
+
+	while((TIM10->SR & TIM_SR_UIF) == 0)
+	{
+
+		i = 0;
+
+		TIM10->SR &=~ TIM_SR_UIF;
+
+		Operacao = Entra_Senha;
+
+		MatrizLeds ();
+	}
+
+}
+
 void InserirSenha ()
 {
 
-	  static uint8_t Borda = 0;
-
-	  static uint8_t i = 0;
-
-	  GPIOA->ODR |= GPIO_ODR_ODR_1 | GPIO_ODR_ODR_0;
+	  GPIOA->ODR = GPIO_ODR_ODR_0 | GPIO_ODR_ODR_1;
 
 	  if(Borda == 0)
 	  {
 
-		  if(Tecla != Nenhuma_Tecla)
+		  if(Tecla != Nenhuma_Tecla && Tecla != 'P' && Tecla != 'E')
 		  {
 
 			  Senha_Digitada [i] = Tecla;
@@ -96,6 +155,16 @@ void InserirSenha ()
 			  Borda ++;
 
 		  }
+
+		  if(Tecla == Tecla_Apagar)
+		  {
+			  Senha_Digitada [i] = ' ';
+
+			  i--;
+
+			  Borda ++;
+		  }
+
 
 	  }
 	  else
@@ -130,10 +199,8 @@ void InserirSenha ()
 
 }
 
-//Função quem abre o armario selecionado
 void AbrirArmario ()
 {
-
 	uint16_t Armarios [9] =
 	{
 			  0b001001,
@@ -147,27 +214,134 @@ void AbrirArmario ()
 			  0b100100
 	};
 
+	Leds[Armario_Escolhido] = Armarios[Armario_Escolhido];
+
 	GPIOA->ODR &=~ GPIO_ODR_ODR_1;
 
-	GPIOC->ODR |= Armarios [Armario_Escolhido];
-
-		if(TIM10->SR & TIM_SR_UIF)
-		{
-			TIM10->SR &=~ TIM_SR_UIF;
-
-			GPIOA->ODR |= GPIO_ODR_ODR_1;
-
-			Operacao = Entra_Senha;
-
-		}
+	RetornaIncio ();
 
 }
 
-//Função que sinaliza o erro de senha
 void ErrouSenha ()
 {
 
 	GPIOA->ODR &=~ GPIO_ODR_ODR_0;
+
+	RetornaIncio ();
+
+}
+
+void ChamaFechadura ()
+{
+
+	if(Borda == 0)
+	{
+		if(Tecla == 'E')
+		{
+			i = 0;
+
+			Operacao = Fecha_Armario;
+
+			Borda++;
+		}
+	}
+	else
+	{
+
+		if(Tecla == Nenhuma_Tecla)
+		{
+			Borda = 0;
+		}
+
+	}
+
+}
+
+void FecharArmario ()
+{
+
+	switch(Tecla)
+	{
+
+		case '1':
+
+			Leds [0] = 0b0;
+
+				break;
+
+		case '2':
+
+			Leds [1] = 0b0;
+
+				break;
+
+		case '3':
+
+			Leds [2] = 0b0;
+
+				break;
+
+		case '4':
+
+			Leds [3] = 0b0;
+
+				break;
+
+		case '5':
+
+			Leds [4] = 0b0;
+
+				break;
+
+		case '6':
+
+			Leds [5] = 0b0;
+
+				break;
+
+		case '7':
+
+			Leds [6] = 0b0;
+
+				break;
+
+		case '8':
+
+			Leds [7] = 0b0;
+
+				break;
+
+		case '9':
+
+			Leds [8] = 0b0;
+
+				break;
+	}
+
+	if(Borda == 0)
+	{
+		if(Tecla == 'P')
+		{
+
+			i = 0;
+
+			Operacao = Entra_Senha;
+
+			Borda++;
+
+		}
+	}
+	else
+	{
+
+		if(Tecla == Nenhuma_Tecla)
+		{
+
+			Borda = 0;
+
+		}
+
+	}
 
 }
 
@@ -176,7 +350,7 @@ int main(void)
 
 	//Habilitando Clocks
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
-		RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
+		RCC->APB2ENR |= RCC_APB2ENR_TIM10EN | RCC_APB2ENR_TIM11EN;
 
 	//Entradas
 		GPIOB->MODER &=~
@@ -247,8 +421,17 @@ int main(void)
 		TIM10->ARR = Frequencia_ARR;
 		TIM10->PSC = Frequencia_PSC;
 
+		TIM11->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+
+		TIM11->ARR = 999;
+		TIM11->PSC = 15;
+
   while (1)
   {
+
+	  MatrizLeds ();
+
+	  ChamaFechadura();
 
 	  Tecla = VarreduraTeclado();
 
@@ -270,6 +453,12 @@ int main(void)
 	    	case Senha_Errada:
 
 	    	  	ErrouSenha();
+
+	    			break;
+
+	    	case Fecha_Armario:
+
+	    		FecharArmario();
 
 	    			break;
 
