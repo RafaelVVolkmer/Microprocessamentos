@@ -5,12 +5,12 @@ static uint8_t BordaSubida, BordaDescida;
 //EVENT DETECT + DEBOUNCE FUNCTION
 void TIM1_UP_TIM10_IRQHandler ()
 {
-
+	
 	TIM10->SR &=~ TIM_SR_UIF;
 
-	typedef enum {ANTERIOR, ATUAL} instantes_t;
+	typedef enum {ANTERIOR, ATUAL} estado_t;
 
-	instantes_t Estado[2];
+	estado_t Estado[2];
 
 	uint8_t Botao = GPIOB->IDR & GPIO_IDR_IDR_0;
 
@@ -54,8 +54,10 @@ int main(void)
 
 	//CONFIG - PINS | GPIOB - 0 (OUTPUT)
 		GPIOB->MODER &=~ GPIO_MODER_MODER0;
-		GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
-		GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_1;
+	
+		//CONFIG - GPIOB0 = PULL DOWN
+			GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
+			GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_1;
 
 
 	//CONFIG - TIMER
