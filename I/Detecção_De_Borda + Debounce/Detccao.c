@@ -2,6 +2,7 @@
 
 static uint8_t BordaSubida, BordaDescida;
 
+//EVENT DETECT + DEBOUNCE FUNCTION
 void TIM1_UP_TIM10_IRQHandler ()
 {
 
@@ -22,19 +23,19 @@ void TIM1_UP_TIM10_IRQHandler ()
 			Estado[ATUAL] = 0;
 		}
 
-			if(Estado[ATUAL]==1 && Estado[ANTERIOR]==0)
-			{
-					BordaSubida = 1;
-					BordaDescida = 0;
-			}
+		if(Estado[ATUAL]==1 && Estado[ANTERIOR]==0)
+		{
+			BordaSubida = 1;
+			BordaDescida = 0;
+		}
 
-				if(Estado[ATUAL]==0 && Estado[ANTERIOR]==1)
-				{
-						BordaSubida = 0;
-						BordaDescida = 1;
-				}
+		if(Estado[ATUAL]==0 && Estado[ANTERIOR]==1)
+		{
+			BordaSubida = 0;
+			BordaDescida = 1;
+		}
 
-				Estado[ANTERIOR] = Estado[ATUAL];
+	Estado[ANTERIOR] = Estado[ATUAL];
 
 }
 
@@ -42,19 +43,19 @@ int main(void)
 {
 
 	//CLOCK - GPIO
-		RCC->AHB1ENR|=RCC_AHB1ENR_GPIOAEN|RCC_AHB1ENR_GPIOBEN|RCC_AHB1ENR_GPIOCEN|RCC_AHB1ENR_GPIODEN|RCC_AHB1ENR_GPIOHEN;
+		RCC->AHB1ENR|= RCC_AHB1ENR_GPIOBEN|RCC_AHB1ENR_GPIOCEN;
 
 	//CLOCK - TIEMER
-		RCC->APB2ENR |= RCC_APB2ENR_TIM10EN | RCC_APB2ENR_TIM11EN;
+		RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
 
+	//CONFIG - PINS | GPIOC - 0 (INPUT)
+		GPIOC->MODER &=~ GPIO_MODER_MODER0;
+		GPIOC->MODER |= GPIO_MODER_MODER0_0;
 
-	//CONFIG - PINS
-		GPIOC->MODER &=~ (GPIO_MODER_MODER0);
-		GPIOC->MODER |= (GPIO_MODER_MODER0_0);
-
-		GPIOB->MODER &=~ (GPIO_MODER_MODER0 | GPIO_MODER_MODER0);
-		GPIOB->PUPDR &=~ (GPIO_PUPDR_PUPDR0 | GPIO_PUPDR_PUPDR0);
-		GPIOB->PUPDR |= (GPIO_PUPDR_PUPDR0_1 | GPIO_PUPDR_PUPDR0_1);
+	//CONFIG - PINS | GPIOB - 0 (OUTPUT)
+		GPIOB->MODER &=~ GPIO_MODER_MODER0;
+		GPIOB->PUPDR &=~ GPIO_PUPDR_PUPDR0;
+		GPIOB->PUPDR |= GPIO_PUPDR_PUPDR0_1;
 
 
 	//CONFIG - TIMER
