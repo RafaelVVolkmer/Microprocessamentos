@@ -34,10 +34,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 	//Prevent unused argument(s) compilation warning
 	UNUSED(htim);
-
+	
+	//Checks if the timer set for the debounce frequency was the one who called the interrupt (same TIMER as the other function)
 	if(htim->Instance == TIM1)
 	{
-		if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_RESET)
+		if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET)
 		{
 		
 			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
