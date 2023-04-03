@@ -15,7 +15,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(GPIO_Pin == BUTTON_Pin && bounce == 1)
 	{
 
-		HAL_TIM_Base_Start_IT(&htim1); 
+		HAL_TIM_Base_Start_IT(&htim1); // Pass the TIMER you want as a parameter (in this case, I opted for TIM1)
 
 		bounce = 0;
 
@@ -42,7 +42,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		
 		bounce = 1;
 		
-		HAL_TIM_Base_Stop_IT(&htim1);
+		HAL_TIM_Base_Stop_IT(&htim1); //Pass the same TIMER as the other function
 
 	}
 
