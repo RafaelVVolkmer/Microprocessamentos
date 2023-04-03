@@ -147,7 +147,7 @@ void Counter_NumberOfClicks (const unsigned int seconds)
   		{
 
   			case 1:
-
+		
   				HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 
   				RESTART();
