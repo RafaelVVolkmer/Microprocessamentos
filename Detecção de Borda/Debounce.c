@@ -12,7 +12,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   	//Prevent unused argument(s) compilation warning
 	UNUSED(GPIO_Pin);
 
-	if(GPIO_Pin == BUTTON_Pin && bounce == 1)
+	if(GPIO_Pin == BUTTON_Pin && bounce)
 	{
 
 		HAL_TIM_Base_Start_IT(&htim1); // Pass the TIMER you want as a parameter (in this case, I opted for TIM1)
