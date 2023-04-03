@@ -44,6 +44,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		
 			//Pass the name of your OUTPUT PIN and PORT, that you should define in "LABEL" as X_GPIO_Port and X_Pin (in this case, i named "LED")
 			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); 
+			
+			//MAKE WHAT YOU WANT TO DO HERE, THE PREVIOUS LINE IS A EXAMPLE HOW TO TOGGLE A LED PIN. ERASE. EXCLUDE IF YOU WANT TO DO SOMETHING ELSE
 		
 			bounce = 1;
 		
