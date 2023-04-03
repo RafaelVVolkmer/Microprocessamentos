@@ -35,16 +35,19 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	//Prevent unused argument(s) compilation warning
 	UNUSED(htim);
 
-	if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_RESET)
-	{
+	if(htim->Instance == TIM1_
+	   {
+		if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_RESET)
+		{
 		
-		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 		
-		bounce = 1;
+			bounce = 1;
 		
-		HAL_TIM_Base_Stop_IT(&htim1); //Pass the same TIMER as the other function
+			HAL_TIM_Base_Stop_IT(&htim1); //Pass the same TIMER as the other function
 
-	}
+		}
+}
 
 }
 
