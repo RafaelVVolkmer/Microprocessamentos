@@ -275,7 +275,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			DisplayNumber[4] = 0b00010000;
 			DisplayNumber[5] = 0b00100000;
 
-			strcpy(msg,"\r\Esquerda\r\n");
+			strcpy(msg,"\r\nEsquerda\r\n");
 
 			HAL_GPIO_TogglePin(PONTO_GPIO_Port, PONTO_Pin);
 
