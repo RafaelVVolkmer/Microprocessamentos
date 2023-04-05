@@ -230,7 +230,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   	//SEQUENCE OF DISPLAY
     	if (htim->Instance == TIM10)
     	{
-
+		
     		write_digit(digit);
 
     		digit ++;
@@ -241,7 +241,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     			digit = 0;
 			
     		}	
-
 
    	 }
    	 else
