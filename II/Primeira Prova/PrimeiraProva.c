@@ -129,37 +129,37 @@ void write_digit(uint8_t digit)
 int main(void)
 {
  
-  HAL_Init();
+  	HAL_Init();
 
-  SystemClock_Config();
+  	SystemClock_Config();
 
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-  MX_TIM1_Init();
-  MX_TIM10_Init();
-  MX_TIM11_Init();
+  	MX_GPIO_Init();
+  	MX_USART2_UART_Init();
+ 	 MX_TIM1_Init();
+ 	 MX_TIM10_Init();
+ 	 MX_TIM11_Init();
  
-  HAL_TIM_Base_Start_IT(&htim1);
-  HAL_TIM_Base_Start_IT(&htim10);
+  	HAL_TIM_Base_Start_IT(&htim1);
+  	HAL_TIM_Base_Start_IT(&htim10);
 
-  HAL_UART_Transmit(&huart2, msg, strlen(msg), TOUT);
+  	HAL_UART_Transmit(&huart2, msg, strlen(msg), TOUT);
 
-  HAL_UART_Receive_IT(&huart2, comand, TCMD);
+ 	 HAL_UART_Receive_IT(&huart2, comand, TCMD);
 
-  DisableAll();
+  	DisableAll();
   
-  while (1)
-  {
+ 	 while (1)
+ 	 {
 
-	  if (msg[0] != '\0')
-	  {
+	 	 if (msg[0] != '\0')
+	 	 {
 		  
-	     HAL_UART_Transmit(&huart2, msg, strlen((char *) msg), 1000);
-	     msg[0] = '\0';
+	     		HAL_UART_Transmit(&huart2, msg, strlen((char *) msg), 1000);
+	     		msg[0] = '\0';
 		  
-	   }
+	  	 }
 
-  }
+  	}
   
 }
 
@@ -169,7 +169,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 	UNUSED(htim);
 
-  //DEBOUNCE
+ 	 //DEBOUNCE
     	if (htim->Instance == TIM1)
     	{
 
