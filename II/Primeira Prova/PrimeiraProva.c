@@ -1,3 +1,9 @@
+#include "main.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
+void SystemClock_Config(void);
 
 //SEIRAL DEI=FINES
 #define TAM_MSG 50
@@ -6,8 +12,8 @@
 #define TOUT 1000
 
 //SERIAL VARIABLES
-char comando[TCMD];
-char msg[200]= "\n\rCOMANDO SERIAL\r\n";
+char comand[TCMD];
+char msg[200] = "\n\rCOMANDO SERIAL\r\n";
 
 //DEBOUNCE VARIABLES
 volatile uint8_t button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
@@ -22,25 +28,25 @@ uint8_t stop = 0;
 uint8_t DisplayNumber[6]=
 {
 
-    0b00000001, // 0
-	0b00000010, // 1
-	0b00000100, // 2
-	0b00001000, // 3
-	0b00010000, // 4
-	0b00100000, // 5
+    	0b00000001, // A_Pin activated
+	0b00000010, // B_Pin activated
+	0b00000100, // C_Pin activated
+	0b00001000, // D_Pin activated
+	0b00010000, // E_Pin activated
+	0b00100000, // F_Pin activated
 
 };
 
 const uint8_t DisplayPins[7] =
 {
 
-		A_Pin,
-		B_Pin,
-		C_Pin,
-		D_Pin,
-		E_Pin,
-		F_Pin,
-		G_Pin
+	A_Pin, //PC0
+	B_Pin, //PC1
+	C_Pin, //PC2
+	D_Pin, //PC3
+	E_Pin, //PC4
+	F_Pin, //PC5
+	G_Pin  //PC6
 
 };
 
@@ -53,9 +59,7 @@ void Counter_NumberOfClicks (const unsigned int click)
   		switch(click)
   		{
 
-
   			case 1:
-
 
   				__HAL_TIM_SET_AUTORELOAD(&htim10, one_ms);
 
@@ -65,7 +69,6 @@ void Counter_NumberOfClicks (const unsigned int click)
 
   			case 2:
 
-
   			  	__HAL_TIM_SET_AUTORELOAD(&htim10, two_ms);
 
   			  	HAL_UART_Transmit(&huart2, "\rfrequencia alterada para 200ms\r\n", 28, TOUT);
@@ -73,7 +76,6 @@ void Counter_NumberOfClicks (const unsigned int click)
   			  	break;
 
   			case 3:
-
 
   			  	__HAL_TIM_SET_AUTORELOAD(&htim10, five_ms);
 
@@ -83,7 +85,6 @@ void Counter_NumberOfClicks (const unsigned int click)
 
   			case 4:
 
-
   				__HAL_TIM_SET_AUTORELOAD(&htim10, one_second);
 
   				HAL_UART_Transmit(&huart2, "\rfrequencia alterada para um segundo\r\n", 28, TOUT);
@@ -91,13 +92,12 @@ void Counter_NumberOfClicks (const unsigned int click)
   				break;
 
   		}
-
 }
 
 //FUNCTION TO RESET DISPLAY (ACTIVATE ON 0)
 void DisableAll()
 {
-
+	
 	for(int i = 0; i <= 6; i++)
 	{
 
@@ -140,7 +140,7 @@ int main(void)
 
   HAL_UART_Transmit(&huart2, msg, strlen(msg), TOUT);
 
-  HAL_UART_Receive_IT(&huart2, comando, TCMD);
+  HAL_UART_Receive_IT(&huart2, comand, TCMD);
 
   DisableAll();
   
@@ -249,14 +249,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 	UNUSED(huart);
 
-	comando[0]=toupper(comando[0]);
+	comand[0]=toupper(comand[0]);
 
   //TRANSMIT
-	switch(comando[0])
+	switch(comand[0])
 	{
 
 		case 'E':
-
 
 			DisplayNumber[0] = 0b00000001;
 			DisplayNumber[1] = 0b00000010;
@@ -274,7 +273,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 				break;
 
 		case 'D':
-
 
 			DisplayNumber[0] = 0b00100000;
 			DisplayNumber[1] = 0b00010000;
@@ -322,6 +320,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 				break;
 	}
 
- HAL_UART_Receive_IT(&huart2, comando,TCMD); //pronto para receber outra mensagem
+ HAL_UART_Receive_IT(&huart2, comand,TCMD);
 
 }
