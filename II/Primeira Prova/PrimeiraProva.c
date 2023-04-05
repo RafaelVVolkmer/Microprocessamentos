@@ -20,7 +20,7 @@ volatile uint8_t button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
 volatile uint8_t last_button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
 
 //COUNTERS
-uint8_t Click = 0;
+uint8_t click = 0;
 int digit = -1;
 uint8_t stop = 0;
 
