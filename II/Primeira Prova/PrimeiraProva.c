@@ -51,12 +51,12 @@ const uint8_t DisplayPins[7] =
 };
 
 //FUNCTION TO DETECTE CLICKS
-void Counter_NumberOfClicks (const unsigned int click)
+void Counter_NumberOfClicks (const unsigned int Click)
 {
 
-	UNUSED(click);
+	UNUSED(Click);
 
-  		switch(click)
+  		switch(Click)
   		{
 
   			case 1:
@@ -188,12 +188,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
            		if (button_state[0] == GPIO_PIN_RESET)
             		{
 
-            			Click ++;
+            			click ++;
 
-            			if(Click >= 5)
+            			if(click >= 5)
             			{
 					
-            				Click = 1;
+            				click = 1;
             			}
 
             			Counter_NumberOfClicks (Click);
