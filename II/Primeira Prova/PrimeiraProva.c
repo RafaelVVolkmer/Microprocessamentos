@@ -5,7 +5,7 @@
 
 void SystemClock_Config(void);
 
-//SEIRAL DEI=FINES
+//SEIRAL DEIFINES
 #define TAM_MSG 50
 #define TCMD 1 
 #define TMSG 200
@@ -254,7 +254,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   //TRANSMIT
 	switch(comand[0])
 	{
-
+		
+		//THIS TWO CASES TURN THE ORDER OS THE SEQUENCE IN DUSPLAY
 		case 'E':
 
 			DisplayNumber[0] = 0b00000001;
@@ -288,24 +289,26 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			write_digit(digit);
 
 				break;
+		
+		//THIS CASE STOP THE SEQUENCE
+		case 'P':
 
-		case 'R':
+			HAL_TIM_Base_Stop_IT(&htim10);
 
-			HAL_TIM_Base_Start_IT(&htim10);
-
-			strcpy(msg,"\r\nVoltou\r\n");
+			strcpy(msg,"\r\nParou\r\n");
 
 			HAL_GPIO_TogglePin(PONTO_GPIO_Port, PONTO_Pin);
 
 			write_digit(digit);
 
 				break;
+			
+		//THIS CASE START THE SEQUENCE AGAIN
+		case 'R':
 
-		case 'P':
+			HAL_TIM_Base_Start_IT(&htim10);
 
-			HAL_TIM_Base_Stop_IT(&htim10);
-
-			strcpy(msg,"\r\nParou\r\n");
+			strcpy(msg,"\r\nVoltou\r\n");
 
 			HAL_GPIO_TogglePin(PONTO_GPIO_Port, PONTO_Pin);
 
