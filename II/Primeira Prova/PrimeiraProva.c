@@ -144,7 +144,7 @@ int main(void)
 
   	HAL_UART_Transmit(&huart2, msg, strlen(msg), TOUT);
 
- 	 HAL_UART_Receive_IT(&huart2, comand, TCMD);
+ 	HAL_UART_Receive_IT(&huart2, comand, TCMD);
 
   	DisableAll();
   
