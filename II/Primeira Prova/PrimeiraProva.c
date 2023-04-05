@@ -135,9 +135,9 @@ int main(void)
 
   	MX_GPIO_Init();
   	MX_USART2_UART_Init();
- 	 MX_TIM1_Init();
- 	 MX_TIM10_Init();
- 	 MX_TIM11_Init();
+ 	MX_TIM1_Init();
+ 	MX_TIM10_Init();
+ 	MX_TIM11_Init();
  
   	HAL_TIM_Base_Start_IT(&htim1);
   	HAL_TIM_Base_Start_IT(&htim10);
