@@ -61,6 +61,7 @@ void Counter_NumberOfClicks (const unsigned int click)
 
   			case 1:
 
+				//CHANGE THE FREQUENCE
   				__HAL_TIM_SET_AUTORELOAD(&htim10, one_ms);
 
   				HAL_UART_Transmit(&huart2, "\rfrequencia alterada para 100ms\r\n", 28, TOUT);
@@ -69,6 +70,7 @@ void Counter_NumberOfClicks (const unsigned int click)
 
   			case 2:
 
+				//CHANGE THE FREQUENCE
   			  	__HAL_TIM_SET_AUTORELOAD(&htim10, two_ms);
 
   			  	HAL_UART_Transmit(&huart2, "\rfrequencia alterada para 200ms\r\n", 28, TOUT);
@@ -76,15 +78,17 @@ void Counter_NumberOfClicks (const unsigned int click)
   			  	break;
 
   			case 3:
-
+				
+				//CHANGE THE FREQUENCE
   			  	__HAL_TIM_SET_AUTORELOAD(&htim10, five_ms);
 
-  			  HAL_UART_Transmit(&huart2, "\rfrequencia alterada para 500ms\r\n", 28, TOUT);
+  			  	HAL_UART_Transmit(&huart2, "\rfrequencia alterada para 500ms\r\n", 28, TOUT);
 
   			  	break;
 
   			case 4:
 
+				//CHANGE THE FREQUENCE
   				__HAL_TIM_SET_AUTORELOAD(&htim10, one_second);
 
   				HAL_UART_Transmit(&huart2, "\rfrequencia alterada para um segundo\r\n", 28, TOUT);
@@ -149,8 +153,10 @@ int main(void)
 
 	  if (msg[0] != '\0')
 	  {
+		  
 	     HAL_UART_Transmit(&huart2, msg, strlen((char *) msg), 1000);
 	     msg[0] = '\0';
+		  
 	   }
 
   }
@@ -164,83 +170,87 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	UNUSED(htim);
 
   //DEBOUNCE
-    if (htim->Instance == TIM1)
-    {
-
-        last_button_state[0] = button_state[0];
-
-        button_state[0] = HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin);
-
-        last_button_state[1] = button_state[1];
-
-        button_state[1] = HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
-
-
-        if (button_state[0] != last_button_state[0])
-        {
-
-            if (button_state[0] == GPIO_PIN_RESET)
-            {
-
-            	Click ++;
-
-            	if(Click >= 5)
-            	{
-            		Click = 1;
-            	}
-
-            	Counter_NumberOfClicks (Click);
-
-            }
-
-        }
-
-        if (button_state[1] != last_button_state[1])
-        {
-
-            if (button_state[1] == GPIO_PIN_RESET)
-            {
-
-            	stop =! stop;
-
-            	if(stop)
-            	{
-            		HAL_TIM_Base_Stop_IT(&htim10);
-            	}
-            	else
-            	{
-            		HAL_TIM_Base_Start_IT(&htim10);
-            	}
-
-            }
-
-        }
-
-    }
-
-  //SEQUENCE OF DISPLAY
-    if (htim->Instance == TIM10)
-    {
-
-    	write_digit(digit);
-
-    	digit ++;
-
-    	if (digit > 5)
+    	if (htim->Instance == TIM1)
     	{
-    		digit = 0;
-    	}
+
+       		last_button_state[0] = button_state[0];
+
+        	button_state[0] = HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin);
+
+       		last_button_state[1] = button_state[1];
+
+       		button_state[1] = HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
 
 
-    }
+        	if (button_state[0] != last_button_state[0])
+        	{
 
-    else
-    {
+           		if (button_state[0] == GPIO_PIN_RESET)
+            		{
 
-    	__NOP();
+            			Click ++;
 
-    }
-  
+            			if(Click >= 5)
+            			{
+					
+            				Click = 1;
+            			}
+
+            			Counter_NumberOfClicks (Click);
+
+            		}
+
+       		 }
+
+      		if (button_state[1] != last_button_state[1])
+        	{
+		
+            		if (button_state[1] == GPIO_PIN_RESET)
+            		{
+
+            			stop =! stop;
+
+            			if(stop)
+            			{
+					
+            				HAL_TIM_Base_Stop_IT(&htim10);
+            			}
+            			else
+            			{
+					
+            				HAL_TIM_Base_Start_IT(&htim10);
+				}
+
+           		 }
+
+     		}
+
+ 	}
+
+  	//SEQUENCE OF DISPLAY
+    	if (htim->Instance == TIM10)
+    	{
+
+    		write_digit(digit);
+
+    		digit ++;
+
+    		if (digit > 5)
+    		{
+			
+    			digit = 0;
+			
+    		}	
+
+
+   	 }
+   	 else
+    	{
+
+    		__NOP();
+
+   	 }
+	
 }
 
 //USART INTERRUPT
@@ -251,7 +261,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 	comand[0]=toupper(comand[0]);
 
-  //TRANSMIT
+  	//TRANSMIT
 	switch(comand[0])
 	{
 		
@@ -323,6 +333,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 				break;
 	}
 
- HAL_UART_Receive_IT(&huart2, comand,TCMD);
+ 	HAL_UART_Receive_IT(&huart2, comand,TCMD);
 
 }
