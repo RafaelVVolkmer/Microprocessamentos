@@ -147,8 +147,11 @@ void Debounce(PinIn_t* button)
 
 void Zero (PinIn_t* button)
 {
+	
 	button->Rising_Edge = 0;
+	
 	button->Falling_Edge = 0;
+	
 }
 
 #endif /* SRC_DEBOUNCE_H_ */
