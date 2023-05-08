@@ -1,0 +1,139 @@
+/*
+  Debounce.h
+ 
+   Created on: Apr 15, 2023
+       Author: Rafael V. Volkmer
+       
+==============================================================================================
+       
+     Essa biblioteca foi feita com o propósito de maximizar a eficiência
+     da detecção de borda e debounce de multíplos botões através de struct e
+     interrupções de Timer.
+       
+     Utilizando o CubeIDE, ajuste seu PSC para (8400-1), e seu ARR para (500-1),
+     isso te dará uma frequência de 50ms, que é o necessário para fazer o debounce.
+       
+     Você deve incluir essa biblioteca dentro da sua main, utilizando: #include "Debounce.h",
+     após arrastar o arquivo para dentro da pasta Scr de seu projeto ou criar uma header
+     com esse mesmo código.
+     	
+     Dentro de sua main, declare uma estrutura como variável global, seguindo este modelo:
+       
+      PinIn_t button =
+		{
+
+    		.Port = BT_GPIO_Port, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
+
+    		.Pin = BT_0_Pin, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
+
+    		.Activate_Val = GPIO_PIN_SET, (É ativo em 1? GPIO_PIN_SET. É ativo em 0? GPIO_PIN_RESET)
+
+    		.Button_State = {0},
+
+    		.Last_Rising_Edge_State = 0,
+
+    		.Last_Falling_Edge_State = 1,
+
+		};
+		
+		Button é o nome que dei à minha estrutura. Para manipular suas variávies, usarei
+		button.nome da variavél. Caso queira utilizar outro botão, posso criar outra estrutura,
+		mudando os parâmetros e seu nome, como, por exemplo button2.nome da variável.
+		
+		As variáveis que serão utilizadas para ver quando o botão foi pressionado serão
+		
+		nomedaestrutura.Falling_Edge, para borda de descida
+		
+		nomedaestrutura.Rising_Edge, para a bord de subida
+		
+		Use lógicas com if, while ou qualquer outra coisas para fazer com que essas variaveis 
+		façam o que devem fazer.
+		
+		Para chamar a funcão, use, dentro da interrupção do seu timer:
+		
+		Debounce(&button);
+		
+		Onde button é o nome da minha estrutura referente ao primeiro botão.
+   
+ */
+
+#ifndef SRC_DEBOUNCE_H_
+#define SRC_DEBOUNCE_H_
+
+#include "stm32f4xx_hal.h"
+
+typedef struct
+{
+    GPIO_TypeDef* Port;
+
+    uint16_t Pin;
+
+    const uint8_t Activate_Val;
+
+    volatile uint8_t Button_State[2];
+
+    volatile uint8_t Last_Rising_Edge_State;
+
+    volatile uint8_t Last_Falling_Edge_State;
+
+    volatile uint8_t Rising_Edge;
+
+	volatile uint8_t Falling_Edge;
+
+} PinIn_t;
+
+void Debounce(PinIn_t* button)
+{
+
+	UNUSED(button);
+
+		//Verifica o estado atual do botÃ£o
+	    uint8_t current_state = HAL_GPIO_ReadPin(button->Port, button->Pin) == button->Activate_Val ? 1 : 0;
+
+	    if ( current_state != button->Button_State[1] )
+	    {
+
+	        button->Button_State[1] = current_state;
+
+	        if ( current_state == 0 )
+	        {
+	        	//Verifica se houve uma borda de descida
+	            if ( button->Button_State[0] > button->Last_Rising_Edge_State )
+	            {
+
+	                button->Falling_Edge = 1;
+
+	            }
+
+	            button->Last_Falling_Edge_State = button->Button_State[0];
+
+	        }
+
+	        else
+	        {
+
+	        	//Verifica se houve uma borda de subida
+	            if ( button->Button_State[0] < button->Last_Falling_Edge_State )
+	            {
+
+	                button->Rising_Edge = 1;
+
+	            }
+
+	            button->Last_Rising_Edge_State = button->Button_State[0];
+
+	        }
+
+	    }
+	    else
+	    {
+
+	    	__NOP();
+
+	    }
+
+	    button->Button_State[0] = current_state;
+
+}
+
+#endif /* SRC_DEBOUNCE_H_ */
