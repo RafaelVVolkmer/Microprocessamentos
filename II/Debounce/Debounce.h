@@ -63,6 +63,31 @@
 		
 		Também há, no final, a função Zero, que zera tanto a borda de subida como a de descida
 		de seu botão. Para usa-la, digite Zero(&button); onde button é o nome da sua estrutura onde quer zera-la.
+		
+		Exemplo de como eu chamo duas funções, cada uma para um botão, dentro da interrupção do TIM 10:
+		
+		void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+		{
+
+			UNUSED(htim);
+
+	 		//DEBOUNCE
+	   		 if (htim->Instance == TIM10)
+	   		 {
+
+	    			Debounce(&button);
+
+	    			Debounce(&button2);
+
+	   		}
+	   		else
+	    		{
+
+	    			__NOP();
+
+	   	 	}
+
+		}
    
  */
 
