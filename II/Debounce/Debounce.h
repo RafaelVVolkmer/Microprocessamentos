@@ -88,6 +88,18 @@
 	   	 	}
 
 		}
+		
+		Agora, caso o primeiro botão for pressionado, ligue e desligue um led:
+		
+		if(button.Rising_Edge)
+		{
+
+			Zero(&button);
+
+
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+	 	}
    
  */
 
