@@ -1,26 +1,32 @@
 /*
-  Debounce.h
- 
-   Created on: Apr 15, 2023
-       Author: Rafael V. Volkmer
+----------------------------------------------------------------------------------------------
+  					DEBOUNCE.H
+----------------------------------------------------------------------------------------------
+
+				Por: Rafael V. Volkmer
+				Data: 08/05/2023
        
 ==============================================================================================
        
-     Essa biblioteca foi feita com o propósito de maximizar a eficiência
-     da detecção de borda e debounce de multíplos botões através de struct e
-     interrupções de Timer.
+    	Essa biblioteca foi feita com o propósito de maximizar a eficiência
+     	da detecção de borda e debounce de multíplos botões através de struct e
+     	interrupções de Timer.
        
-     Utilizando o CubeIDE, ajuste seu PSC para (8400-1), e seu ARR para (500-1),
-     isso te dará uma frequência de 50ms, que é o necessário para fazer o debounce.
+     	Utilizando o CubeIDE, ajuste seu PSC para (8400-1), e seu ARR para (500-1),
+    	isso te dará uma frequência de 50ms, que é o necessário para fazer o debounce.
+	
+	Caso seja no Atollic, as funções HAL não estarão disponíveis, mas só mude-as para outro
+	jeito de ler os valores atuais das entradas, o pino e o port. Nele, ajuste o PSC para (16000-1) e o ARR
+	para (50-1).
        
-     Você deve incluir essa biblioteca dentro da sua main, utilizando: #include "Debounce.h",
-     após arrastar o arquivo para dentro da pasta Scr de seu projeto ou criar uma header
-     com esse mesmo código.
+     	Você deve incluir essa biblioteca dentro da sua main, utilizando: #include "Debounce.h",
+    	após arrastar o arquivo para dentro da pasta Scr de seu projeto ou criar uma header
+    	com esse mesmo código.
      	
-     Dentro de sua main, declare uma estrutura como variável global, seguindo este modelo:
+    	Dentro de sua main, declare uma estrutura como variável global, seguindo este modelo:
        
-      PinIn_t button =
-		{
+     	PinIn_t button =
+     	{
 
     		.Port = BT_GPIO_Port, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
 
@@ -33,12 +39,12 @@
     		.Last_Rising_Edge_State = 0,
 
     		.Last_Falling_Edge_State = 1,
-
-		};
+	
+	};
 		
 		Button é o nome que dei à minha estrutura. Para manipular suas variávies, usarei
-		button.nome da variavél. Caso queira utilizar outro botão, posso criar outra estrutura,
-		mudando os parâmetros e seu nome, como, por exemplo button2.nome da variável.
+		button.nomedavariavél. Caso queira utilizar outro botão, posso criar outra estrutura,
+		mudando os parâmetros e seu nome, como, por exemplo button2.nomedavariável.
 		
 		As variáveis que serão utilizadas para ver quando o botão foi pressionado serão
 		
