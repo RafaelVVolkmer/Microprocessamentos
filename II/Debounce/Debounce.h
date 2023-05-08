@@ -84,7 +84,7 @@ typedef struct
 
     volatile uint8_t Rising_Edge;
 
-	volatile uint8_t Falling_Edge;
+    volatile uint8_t Falling_Edge;
 
 } PinIn_t;
 
