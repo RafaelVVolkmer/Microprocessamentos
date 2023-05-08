@@ -60,6 +60,9 @@
 		Debounce(&button);
 		
 		Onde button é o nome da minha estrutura referente ao primeiro botão.
+		
+		Também há, no final, a função Zero, que zera tanto a borda de subida como a de descida
+		de seu botão. Para usa-la, digite Zero(&button); onde button é o nome da sua estrutura onde quer zera-la.
    
  */
 
@@ -140,6 +143,12 @@ void Debounce(PinIn_t* button)
 
 	    button->Button_State[0] = current_state;
 
+}
+
+void Zero (PinIn_t* button)
+{
+	button->Rising_Edge = 0;
+	button->Falling_Edge = 0;
 }
 
 #endif /* SRC_DEBOUNCE_H_ */
