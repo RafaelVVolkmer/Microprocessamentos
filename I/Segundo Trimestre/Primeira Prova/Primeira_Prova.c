@@ -15,19 +15,24 @@
 
 uint8_t SegundoTempo;
 uint8_t PrimeiroTempo;
+
 uint8_t i;
+
 uint16_t teclas;
+
 uint8_t ponto = 0b10000000;
 
 const uint8_t vet[8]=
 {
-		0b00000000, //null
+
+	0b00000000, //null
         0b00000001, // 0
         0b00000011, // 1
         0b00000111, // 2
         0b00001111, // 3
         0b00011111, // 4
         0b00111111, // 5
+
 };
 
 void Contador ()
@@ -38,31 +43,34 @@ void Contador ()
 
 	PrimeiroTempo = TIM11->SR & TIM_SR_UIF;
 
-		          if(PrimeiroTempo)
-		          {
-		              i++;
-		              TIM11->SR &=~ TIM_SR_UIF;
+	if(PrimeiroTempo)
+	{
+		TIM11->SR &=~ TIM_SR_UIF;
+		
+		i++;
+	
+		 if(i>7)
+		 {
+			 i = 1;
+		 }
 
-		              if(i>7)
-		              {
-		            	  i = 1;
-		              }
-
-		          }
+	}
 }
 
 void PiscaPonto	()
 {
-		SegundoTempo = TIM10->SR & TIM_SR_UIF;
+	
+	SegundoTempo = TIM10->SR & TIM_SR_UIF;
 
-			if(SegundoTempo)
-			{
+	if(SegundoTempo)
+	{
 
-				GPIOC->ODR ^= ponto;
+		GPIOC->ODR ^= ponto;
 
-				TIM10->SR &=~ TIM_SR_UIF;
+		TIM10->SR &=~ TIM_SR_UIF;
 
-			}
+	}
+	
 }
 
 int main(void)
@@ -122,41 +130,41 @@ int main(void)
 	//configurações TIMER10
 	TIM10->PSC = FrequenciaPSC;
 
-		TIM10->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
+	TIM10->CR1 = TIM_CR1_CEN | TIM_CR1_ARPE;
 
 while (1)
 {
 
+	 teclas = GPIOA->IDR & mascara;
+	 teclas = teclas >> 5;
 
+	 switch(teclas)
+	 {
+	          case 0:
+	        	Contador ();
+	        	GPIOC->ODR &=~ ponto;
+	        		break;
 
-	          teclas = GPIOA->IDR & mascara;
-	          	  teclas = teclas >> 5;
+	          case 1:
+	          	Contador ();
+	          	PiscaPonto ();
+	          	TIM10->ARR = FrequenciaARR_PONTO;
+	          		break;
 
-	          switch(teclas)
-	          {
-	          	  case 0:
-	        		Contador ();
-	        		GPIOC->ODR &=~ ponto;
-	        			break;
+	          case 2:
+	          	Contador ();
+	          	GPIOC->ODR &=~ ponto;
+	          		break;
 
-	          	  case 1:
-	          		Contador ();
-	          		PiscaPonto ();
-	          		TIM10->ARR = FrequenciaARR_PONTO;
-	          		  	  break;
-
-	          	  case 2:
-	          		Contador ();
-	          		GPIOC->ODR &=~ ponto;
-	          			break;
-
-	          	  case 3:
-	          		  Contador ();
-	          		  PiscaPonto ();
-	          		  TIM10->ARR = FrequenciaARR_PONTO_SW1;
-	              	  	  	  break;
-	          }
-
-	      }
-
+	           case 3:
+	          	Contador ();
+	          	PiscaPonto ();
+	          	TIM10->ARR = FrequenciaARR_PONTO_SW1;
+	              	  	 break;
+		 
+		default:
+			 GPIOC->ODR &=~ 0b1111111;
+			  	break;	  	
+	}
+ }
 }
