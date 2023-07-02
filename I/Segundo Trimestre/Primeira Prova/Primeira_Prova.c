@@ -1,3 +1,9 @@
+//Conecte um display de 7 segmentos aos pinos do arm, junto com 2 chaves
+// - Se nenhuma chave estiver pressionada, o display deve exibir a contagem de 0 a 5 em uma frequencia de 200hz, e o ponto desligado
+// - Se a primeira chave estiver pressionada, o ponto deve piscar a uma determinada frequencia
+// - Se a segunda chave estiver pressionada,  o display deve exibir a contagem de 0 a 5 em uma frequencia de 200hz, e o ponto desligado
+// - Se as duas chaves estiverem pressionadas, o ponto deve piscar a uma determinada frequencia, diferente da anterior
+
 //Rafael V. Volkmer - 4324 / N°21 | Prova - Segundo Trimestre (2)
 #include "stm32f4xx.h"
 
@@ -162,9 +168,6 @@ while (1)
 	          	TIM10->ARR = FrequenciaARR_PONTO_SW1;
 	              	  	 break;
 		 
-		default:
-			 GPIOC->ODR &=~ 0b1111111;
-			  	break;	  	
 	}
  }
 }
