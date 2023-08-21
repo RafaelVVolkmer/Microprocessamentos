@@ -30,7 +30,7 @@
 
     		.Port = BT_GPIO_Port, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
 
-    		.Pin = BT_0_Pin, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
+    		.Pin = BT_Pin, (BT é o nome que dei ao meu pino nas configs. Mude de acordo com o seu)
 
     		.Activate_Val = GPIO_PIN_SET, (É ativo em 1? GPIO_PIN_SET. É ativo em 0? GPIO_PIN_RESET)
 
