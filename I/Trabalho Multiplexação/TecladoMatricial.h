@@ -12,7 +12,7 @@
 
 #define Primeira_Linha 0b1110
 #define Segunda_Linha 0b1101
-#define Terceira_Linha 0b01011
+#define Terceira_Linha 0b1011
 #define Quarta_Linha 0b0111
 
 #define Nenhuma_Tecla '\0'
