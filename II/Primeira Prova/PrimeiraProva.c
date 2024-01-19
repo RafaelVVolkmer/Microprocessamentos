@@ -12,20 +12,20 @@ void SystemClock_Config(void);
 #define TOUT 1000
 
 //SERIAL VARIABLES
-char comand[TCMD];
-char msg[200] = "\n\rCOMANDO SERIAL\r\n";
+static char comand[TCMD] = {[0...TCMD], 0};
+static char msg[200] = "\n\rCOMANDO SERIAL\r\n";
 
 //DEBOUNCE VARIABLES
 volatile uint8_t button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
 volatile uint8_t last_button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
 
 //COUNTERS
-uint8_t click = 0;
-uint8_t stop = 0;
-int digit = -1;
+static uint8_t click = 0;
+static uint8_t stop = 0;
+static int digit = -1;
 
 //STRINGS
-uint8_t DisplayNumber[6]=
+static uint8_t DisplayNumber[6]=
 {
 
     	0b00000001, // A_Pin activated
@@ -37,7 +37,7 @@ uint8_t DisplayNumber[6]=
 
 };
 
-const uint8_t DisplayPins[7] =
+static const uint8_t DisplayPins[7] =
 {
 
 	A_Pin, //PC0
