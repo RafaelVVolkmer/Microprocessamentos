@@ -5,17 +5,17 @@
 
 typedef enum {Entra_Senha = 0, Compara, Senha_Certa, Senha_Errada, Fecha_Armario} opera_t;
 
-opera_t Operacao = Entra_Senha;
+static opera_t Operacao = Entra_Senha;
 
 typedef enum{Agora,Antes,Pressionada} instante_t;
 
-char Tecla [3];
+static char Tecla [3];
 
-uint16_t Armario_Escolhido = 0;
+static uint16_t Armario_Escolhido = 0;
 
-int i = 0;
+static int i = 0;
 
-char Senha_Digitada[6];
+static char Senha_Digitada[6];
 
 uint16_t Leds [9] =
 {
