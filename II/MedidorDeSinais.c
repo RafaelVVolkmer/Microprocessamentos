@@ -73,8 +73,8 @@ typedef struct
 
 enum estado {atual, anterior};
 
-SignalData signalData1 = {0};
-SignalData signalData2 = {0};
+SignalData signalData1;
+SignalData signalData2;
 
 static uint8_t msg[MSGSIZE] = {[0...MSGSIZE], 0};
 static uint8_t comando[TCMD] = {[0...TCMD], 0};
