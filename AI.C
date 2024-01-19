@@ -61,21 +61,22 @@ void SystemClock_Config(void);
 //DEBOUNCE
 volatile uint8_t button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
 volatile uint8_t last_button_state[2] = {GPIO_PIN_SET, GPIO_PIN_SET};
-uint8_t first_press = 0;
-uint8_t Click = 0; //toggle when you press
+static uint8_t first_press = 0;
+static uint8_t Click = 0; //toggle when you press
 
 
-unsigned int button_press = 0;
+static unsigned int button_press = 0;
 
 //TIM DIVISION
-uint8_t timDiv_counter_1 = 0;
-uint8_t timDiv_counter_3 = 0;
+static uint8_t timDiv_counter_1 = 0;
+static uint8_t timDiv_counter_3 = 0;
 
-int freq[4] =
+static int freq[4] =
 {
 		ONE_SEC, TWO_SEC, THREE_SEC, 0
 };
-const uint16_t DisplayNumber[10]=
+
+static const uint16_t DisplayNumber[10]=
 {
 
     0b00111111, // 0
@@ -90,7 +91,7 @@ const uint16_t DisplayNumber[10]=
     0b01101111  // 9
 };
 
-const uint32_t DisplayLetter[26]=
+static const uint32_t DisplayLetter[26]=
 {
 
     0b01110111, //A
@@ -121,7 +122,7 @@ const uint32_t DisplayLetter[26]=
     0b01011011  //Z
 };
 
-const uint8_t DisplayPins[7] =
+static const uint8_t DisplayPins[7] =
 {
 
 		A_Pin,
@@ -135,8 +136,8 @@ const uint8_t DisplayPins[7] =
 };
 
 //COUNTERS
-unsigned int number_ofClicks = 0;
-int digit = -1;
+static unsigned int number_ofClicks = 0;
+static int digit = -1;
 
 void RESTART ()
 {
