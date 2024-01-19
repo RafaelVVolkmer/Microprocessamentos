@@ -76,8 +76,8 @@ enum estado {atual, anterior};
 SignalData signalData1 = {0};
 SignalData signalData2 = {0};
 
-uint8_t msg[MSGSIZE];
-uint8_t comando[TCMD];
+static uint8_t msg[MSGSIZE] = {[0...MSGSIZE], 0};
+static uint8_t comando[TCMD] = {[0...TCMD], 0};
 
 /* USER CODE END PV */
 
@@ -261,6 +261,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 	comando[0]=toupper(comando[0]);
 
+	//Implementar lógica caso necessário uso de serial - Por padrão, não precisa
 	switch(comando[0])
 	{
 
