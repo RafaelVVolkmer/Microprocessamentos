@@ -252,7 +252,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	
 }
 
-//USART INTERRUPT
+//UART INTERRUPT
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 
